@@ -1,0 +1,789 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+/* Portrait layout (default) */
+
+/* Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+}
+
+/* BEGIN HTML Doctor CSS reset */
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}nav ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}a{margin:0;padding:0;font-size:100%;vertical-align:baseline;background:transparent}ins{background-color:#ff9;color:#000;text-decoration:none}mark{background-color:#ff9;color:#000;font-style:italic;font-weight:bold}del{text-decoration:line-through}abbr[title],dfn[title]{border-bottom:1px dotted;cursor:help}table{border-collapse:collapse;border-spacing:0}hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0}input,select{vertical-align:middle}
+/* END HTML Doctor CSS reset */
+
+
+/* BEGIN Common Styles */
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+ul{
+	list-style-type: none;
+}
+h1,h2,h3{
+	font-weight: 300;
+}
+body {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    background-color:#000;
+    font-size:12px;
+    margin:0px;
+    padding:0px;
+    width:100%;
+    background: #000;
+	font-family: 'Lato', sans-serif;
+	font-weight: 100;
+	font-size: 10px;
+	color: rgb(255,255,255);
+    text-align: left;
+    /* Set the opacity to zero to create a fade-in css3 effect with transit.js */
+    opacity: 0;
+}
+body>footer{
+	background: rgb(0,0,0);
+	width: 100%;
+	height: 35px;
+    position: fixed;
+    bottom:0;
+    left: 0;
+}
+body>footer .pagination{
+	text-align: center;
+	float: left;
+	margin-top: 15px;
+	width: 100%;
+}
+body>footer .pagination li{
+	width: 15px;
+    height: 25px;
+    margin: 0px 2px;
+    opacity: .6;
+    -webkit-opacity: .6;
+	display: inline-block;
+    background: url('../img/pagination-dot.png') 0 0 no-repeat transparent;
+    text-indent: -99999px;
+}
+body>header{
+	position:fixed;
+    font-size: 2.4em;
+    font-weight: 300;
+    top:0;
+    left:0;
+	width: 100%;
+	height: 100px;
+    padding: 4px;
+    background-position: 5px 20px;
+    background-repeat: no-repeat;
+}
+body>header>h1,
+body>header>h2,
+body>header>h3{
+    display: inline;
+    float: left;
+    clear: none;
+    width: auto;
+}
+body>header>h2,
+body>header>h3{
+	margin-left: 55px;
+    margin-bottom: 0px;
+    margin-right: 0px;
+    font-weight: 400;
+}
+body>header>h2{
+    margin-top: 0px;
+    font-size: .8em;
+}
+body>header>h3{
+    font-size: .6em;
+    margin-top: 5px;
+    font-weight: 400;
+}
+body>header>h1{
+    margin-top: 10px;
+    margin-left: 55px;
+    margin-bottom: 0px;
+    margin-right: 0px;
+}
+.page {
+    float: left;
+    -webkit-transform:translate3d(0,0,0);
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+    /*border: 1px solid green;*/
+    -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+#pageWrapper {
+    position:absolute;
+    z-index:1;
+    width: 100%;
+    overflow:hidden;
+    top:104px;
+    left:0px;
+}
+.count,
+.status{
+    line-height: 1.3;
+    padding: 2px 3px;
+    margin: 0px 5px 0px 0px;
+    display: inline;
+    background: rgba(255,255,255,.2);
+    color: rgba(255,255,255,1);
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+.swipeable .status,
+.swipeable .count{
+	margin-top: 5px;
+}
+.add-35px{
+    position: fixed;
+    z-index: 10;
+    top: 25px;
+    right: 4px;
+    width: 35px;
+    height: 35px;
+    display: block;
+    padding: 4px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    background: url('../img/add-35px.png') 0 0 no-repeat transparent;
+}
+.add-35px:active{
+    background-color: rgba(255,255,255,.3);
+}
+.back{
+    position: absolute;
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    margin:8px;
+    padding: 
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    background: url('../img/back.png') center center no-repeat transparent;
+}
+.back:active{
+    background-color: rgba(255,255,255,.3);
+
+}
+div#listViewWrapper {
+    font-size: 1.5em;
+    float: left;
+    width: 100%;
+    overflow: hidden;
+    height: 320px;
+    background: rgba(25,25,25,1);
+    
+}
+div#listViewWrapper ul#listView{
+    
+    padding: 0;
+    margin: 0;
+    float: left;
+    width: 100%;
+    
+}
+div#listViewWrapper ul#listView>li{
+    background: transparent;
+    float: left;
+    width: 100%;
+    clear: both;
+    height: 40px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: rgba(200,200,200,1);
+    border-top: 1px solid rgba(40,40,40,1);
+    border-bottom: 1px solid rgba(0,0,0,1);
+    padding: 5px;
+	transition: .2s;
+	-webkit-transition: .2s;
+}
+div#listViewWrapper ul#listView>li:active{
+    background: rgba(30,30,30,1);
+    color: rgba(255,255,255,1);
+}
+div#listViewWrapper ul#listView>li.swipeable{
+	/* children <UL>s will have padding and bg color */
+
+	padding: 0;
+}
+div#listViewWrapper ul#listView li.swipeable>ul{
+	height: 100%;
+}
+div#listViewWrapper ul#listView li.swipeable>ul.normalMenu{
+	background: rgba(25,25,25,1);
+}
+div#listViewWrapper ul#listView li.swipeable>ul.swipeMenu{
+	background: rgba(45,45,45,1);
+}
+ul.normalMenu{
+	float: left;
+	/* going with fixed width, equal to iphone 4s width */
+	width: 320px;
+}
+ul.normalMenu>li{
+	padding: 5px;
+}
+ul.normalMenu>li.primary{
+	float: left;
+}
+ul.normalMenu>li.secondary{
+	float: right;
+	font-size: .85em;
+}
+ul.swipeMenu{
+	transition: .5s;
+	-webkit-transition: .5s;
+	/*
+	transform: scale(.001);
+	-webkit-transform: scale(.001);
+	*/
+	margin-left: 330px;
+	float: left;
+	width: 320px;
+}
+ul.swipeMenu>li{
+	/* Giving the padding to <li> so that the dividing borders will cover whole height */
+	padding: 0px;
+	float: left;
+	text-align: center;
+	color: red;
+	height: 100%;
+	display: block;
+}
+ul.swipeMenu li:active{
+	background-color: rgba(0,0,0,.9);
+}
+li.icon{
+	/* Hide inner text for elements that are represented only with icons */
+	text-indent: -9999px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-color: transparent;
+	background-size: 0px 0px;
+	-webkit-transition: all 100ms cubic-bezier(0.680, -0.550, 0.265, 1.550);  
+
+}
+ul.swipeMenu>li.half{
+	width: 50%;
+}
+ul.swipeMenu>li.tierce{
+	width: 33.3%;
+}
+ul.swipeMenu>li.quarter{
+	width: 25%;
+}
+ul.swipeMenu>li{
+	border-right: 1px solid rgba(0,0,0,.3);
+	border-left: 1px solid rgba(0,0,0,.7);
+}
+ul.swipeMenu>li:last-child{
+	border-right: none;
+}
+ul.swipeMenu>li:first-child{
+	border-left: none;
+}
+li.delete{
+	background-image: url('../img/delete-30px.png');
+}
+li.edit{
+	background-image: url('../img/edit-30px.png');
+}
+/* END Common Styles */
+
+
+/* BEGIN Patients Directory */
+body.patientsDirectory{
+}
+body.patientsDirectory>header{
+	background-color: rgba(19,183,255,1);
+    background-image: url('../img/patient-directory-search-icon.png');
+}
+form#searchPatients{
+    float: left;
+    margin: 25px 0 0 55px;
+    font-weight: 300;
+}
+input#search-term{
+    border: none;
+    outline: none;
+    border-bottom: 1px solid rgba(255,255,255,1);
+    width: 100%;
+    height: 35px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 1em;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    color: rgba(255,255,255,1);
+    padding:0;
+    background: transparent;
+    -webkit-transition: all 300 ease-in-out;
+}
+input#search-term:active{
+    background: rgba(255,255,255,.2);
+}
+input#search-term:focus{
+    background: rgba(255,255,255,.2);
+}
+/* END Patients Directory */
+
+/* BEGIN Dashboard */
+body.dashboard>header{
+    background-image: url('../img/patient-info-module-bg.png');
+    background-color: rgba(19,183,255,1);
+}
+body.dashboard>header:active{
+    background-color: #00A0D1;
+}
+body.dashboard>header>h2{
+    font-size: .6em;
+}
+div.page article.module{
+	font-size: 1.5em;
+	width: 49.5%;
+	/*height: 200px;*/
+	float: left;
+	margin-bottom: 3px;
+	padding: 4px;
+    position: relative;
+}
+article#diagnosisHist{
+	background: url('../img/diagnosis-history-module-bg.png') 5px 5px no-repeat rgb(76,193,151);
+}
+article#diagnosisHist:active{
+    background-color: #42A57F;
+}
+article#diagnosisHist>h1{
+    margin-top: 75px;
+}
+article#appts{
+	background: url('../img/appts-module-bg.png') 5px 5px no-repeat rgb(178,146,254);
+	margin-right:3px;
+}
+article#appts:active{
+    background-color: #907CD1;
+}
+article#appts>h1{
+    margin-top: 60px;
+}
+article#appts div#apptsScroll{
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    height: 200px;
+    overflow-y: scroll;
+    background: rgba(0,0,0,.4);
+}
+ul#apptsList{
+    padding: 0px;
+    float: left;
+    clear: both;
+    width: 100%;
+    border-bottom: 1px solid rgba(0,0,0,.2);
+}
+ul#apptsList li{
+    border-bottom: 1px solid rgba(0,0,0,.5);
+    border-top: 1px solid rgba(0,0,0,.2);
+    padding: 5px;
+    float: left;
+    clear: both;
+    width: 100%;
+}
+ul#apptsList li:active{
+    background-color: rgba(255,255,255,.1);
+}
+ul#apptsList li:active {
+    background-color: rgba(255,255,255,.1);
+}
+ul#apptsList li:first-child{
+    
+}
+span.apptDate,span.apptType{
+    float: left;
+    clear: both;
+    width: 100%;
+    display:  block;
+}
+span.apptDate{
+    padding-left: 35px;
+    font-size: .9em;
+    line-height:1.5;
+    background: url('../img/appt-date.png') 0 center no-repeat transparent;
+    height: 20px;
+    margin-bottom: 3px;
+}
+span.apptType{
+    padding-left: 35px;
+    font-size: .75em;
+    font-weight: 400;
+    line-height:1.5;
+    background: url('../img/appt-cc.png') 0 center no-repeat transparent;
+    height: 20px;
+}
+div#apptsActionsWrapper{
+    position: absolute;
+    top: 65px;
+    left: 0;
+    width: 100%;
+    height: 35px;
+    opacity: 0;
+    margin: 0;
+    border-bottom: 1px solid rgba(0,0,0,.5);
+}
+div#apptsActionsWrapper ul.apptsActions{
+    float: left;
+    width: 100%;
+    height: 35px;
+}
+div#apptsActionsWrapper ul.apptsActions li{
+    width: 50%;
+    float: left;
+    height: 100%;
+    display: inline;
+    padding-left: 35px;
+    font-weight: 300;
+    font-size: 1em;
+    line-height: 2.5;
+    background-repeat: no-repeat;
+    background-position: 5px center;
+    background-color: rgba(0,0,0,.5);
+}
+div#apptsActionsWrapper ul.apptsActions li:active{
+    background-color: rgba(255,255,255,.1);
+}
+div#apptsActionsWrapper ul.apptsActions li:first-child{
+    border-right: 1px solid black;
+}
+li.addNewAppt{
+    background-image: url('../img/add-appt.png');
+}
+li.viewAllAppts{
+    background-image: url('../img/view-all-appts.png');
+}
+
+article#pmh{
+	background: url('../img/pmh-module-bg.png') 5px 5px no-repeat rgb(242,175,76);
+}
+article#pmh:active{
+    background-color: #ED9D29;
+}
+article#pmh>h1{
+    margin-top: 65px;
+}
+article#mdList{
+	background: url('../img/medication-list-module-bg.png') 5px 5px no-repeat rgb(244,108,122);
+}
+article#mdList:active{
+    background-color: #E05362;
+}
+article#mdList>h1{
+    margin-top: 75px;
+}
+article#allergies{
+	background: url('../img/allergies-module-bg.png') 5px 5px no-repeat rgb(165,60,165);
+    margin-right: 3px;
+}
+article#allergies:active{
+    background-color: #8B258E;
+}
+article#allergies>h1{
+    margin-top: 75px;
+}
+article#immunization{
+	background: url('../img/immunization-module-bg.png') 5px 5px no-repeat rgb(153,193,114);
+}
+article#immunization>h1{
+	margin-top: 75px;
+}
+article#immunization:active{
+	background-color: #84AD59;
+}
+article#labRecords{
+	background: url('../img/lab-records-module-bg.png') 5px 5px no-repeat rgb(104,160,121);
+    margin-right: 3px;
+}
+article#labRecords>h1{
+	margin-top: 75px;
+}
+article#labRecords:active{
+	background-color: #558963;
+}
+article#imgRecords{
+	background: url('../img/image-records-module-bg.png') 5px 5px no-repeat rgb(105,183,181);
+}
+article#imgRecords:active{
+	background-color: #549390;
+}
+article#imgRecords>h1{
+    margin-top: 75px;
+}
+article#lifeStyle{
+	background: url('../img/lifestyle-module-bg.png') 5px 5px no-repeat rgb(222,115,83);
+}
+article#lifeStyle>h1{
+    margin-top: 75px;
+}
+article#lifeStyle:active{
+    background-color: #C15C44;
+}
+.module{
+    /*-webkit-transform: translate3d(0px,0px,0px);*/
+}
+.module h1{
+    float: left;
+}
+#page1{
+}
+
+/* modules */
+.module{
+}
+
+/* END Dashboard */
+
+/* BEGIN Diagnosis History */
+body.diagnosisHistory{
+    
+}
+body.diagnosisHistory>header{
+    width: 100%;
+	float: left;
+	padding: 4px;
+    background: url('../img/diagnosis-history-module-bg.png') 5px 20px no-repeat rgb(76,193,151);
+    height: 100px;
+    font-size: 2.4em;
+    font-weight: 300;
+}
+
+body.diagnosisHistory #pageWrapper{
+}
+body.diagnosisHistory div#listViewWrapper ul#listView>li.swipeable>ul.normalMenu:active{
+    background: rgba(50,50,50,1);
+}
+.perspective{
+	-webkit-transform: perspective( 700px ) rotateX( 90deg );
+	height: 0px;
+}
+/*
+body.diagnosisHistory div#listViewWrapper ul#listView li.swipeable>ul.swipeMenu{
+	background: rgba(76,193,151,1);
+}
+*/
+/* END Diagnosis History */
+/*
+* Mootools Simple Modal
+* Version 1.0
+* Copyright (c) 2011 Marco Dell'Anna - http://www.plasm.it
+*
+* Markup Modal
+* <div class="simple-modal" id="simple-modal">
+*   <div class="simple-modal-header">
+*     <a class="close" href="#">Ã—</a>
+*     <h1>SimpleModal Title</h1>
+*   </div>
+*   <div class="simple-modal-body">
+*     <div class="contents">
+*       <p>
+*         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+*       </p>
+*     </div>
+*   </div>
+*   <div class="simple-modal-footer">
+*     <a class="btn primary" href="#">Primary</a>
+*     <a class="btn secondary" href="#">Secondary</a>
+*   </div>
+* </div>
+*/
+/* Vars */
+/* Overlay style */
+#simple-modal-overlay {
+  position: fixed ;
+  display: block;
+  z-index: 99998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background: -webkit-gradient(radial, center center, 0, center center, 460, from(#ffffff), to(#291a49));
+  background: -webkit-radial-gradient(circle, #ffffff, #291a49);
+  background: -moz-radial-gradient(circle, #ffffff, #291a49);
+  background: -ms-radial-gradient(circle, #ffffff, #291a49);
+}
+.simple-modal {
+  /* Style rewrite */
+
+  width: 600px;
+  left: 20px;
+  top: 20px;
+  /* */
+
+  position: absolute;
+  position: fixed;
+  margin: 0;
+  color: #808080;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 18px;
+  background-color: #FFFFFF;
+  border: 1px solid #EAEEFA;
+  border: 1px solid rgba(234, 238, 250, 0.6);
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+  z-index: 99999;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+}
+.simple-modal .simple-modal-header {
+  padding: 5px 15px;
+  margin: 0;
+  border-bottom: 1px solid #EEEEEE;
+}
+.simple-modal .simple-modal-header h1 {
+  margin: 0;
+  color: #404040;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 36px;
+}
+.simple-modal a.close {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  color: #999;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  font-weight: normal;
+  line-height: 10px;
+  text-decoration: none;
+}
+.simple-modal a.close:hover {
+  color: #444;
+}
+.simple-modal .simple-modal-body {
+  padding: 15px;
+  /* Extra style */
+
+}
+.simple-modal .simple-modal-body div.contents {
+  overflow: hidden;
+}
+.simple-modal .simple-modal-body p {
+  font-size: 13px;
+  font-weight: normal;
+  color: #606060;
+  line-height: 18px;
+}
+.simple-modal .simple-modal-body p img {
+  display: block;
+  margin: 0 auto 10px auto;
+}
+.simple-modal .simple-modal-footer {
+  display: block;
+  background-color: #F5F5F5;
+  padding: 14px 15px 15px;
+  border-top: 1px solid #EEEEEE;
+  -webkit-border-radius: 0 0 6px 6px;
+  -moz-border-radius: 0 0 6px 6px;
+  border-radius: 0 0 6px 6px;
+  -webkit-box-shadow: inset 0 1px 0 #FFF;
+  -moz-box-shadow: inset 0 1px 0 #FFF;
+  box-shadow: inset 0 1px 0 #FFF;
+  zoom: 1;
+  margin-bottom: 0;
+  text-align: center;
+}
+.simple-modal .simple-modal-footer a.btn {
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
+  background-repeat: no-repeat;
+  padding: 5px 14px 6px;
+  color: #333;
+  font-size: 13px;
+  line-height: normal;
+  border: 1px solid transparent;
+  -webkit-transition: 0.2s linear all;
+  -moz-transition: 0.2s linear all;
+  transition: 0.2s linear all;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+}
+.simple-modal .simple-modal-footer a.btn.primary {
+  color: #FFF;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #999;
+  background-repeat: repeat-x;
+  margin-right: 15px;
+}
+.simple-modal .simple-modal-footer a.btn.primary:hover {
+  border: 1px solid #444;
+  background-color: #444;
+}
+.simple-modal .simple-modal-footer a.btn.secondary {
+  padding: 5px 2px 6px;
+}
+.simple-modal .simple-modal-footer a.btn.secondary:hover {
+  color: #999;
+}
+/* Draggable style */
+.simple-modal.draggable .simple-modal-header:hover {
+  cursor: move;
+  background-color: #f8f8f8;
+  -webkit-border-top-left-radius: 6px;
+  -webkit-border-top-right-radius: 6px;
+  -moz-border-radius-topleft: 6px;
+  -moz-border-radius-topright: 6px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+/* Loading style */
+.simple-modal.loading .simple-modal-body {
+  min-height: 60px;
+  background: transparent url("../images/loader.gif") no-repeat center center;
+}
+.simple-modal.loading .simple-modal-body div.contents {
+  display: none;
+}
+.simple-modal.loading .close, .simple-modal.loading .simple-modal-header, .simple-modal.loading .simple-modal-footer {
+  display: none;
+}
+/* Hide header */
+.simple-modal.hide-header .simple-modal-header {
+  display: none;
+}
+/* Hide header */
+.simple-modal.hide-footer .simple-modal-footer {
+  display: none;
+}
+/* BEGIN Modal Styles */
+
+/* End Modal Styles */

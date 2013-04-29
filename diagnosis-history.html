@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- BEGIN mobile meta tags -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5 maximum-scale=1.0,user-scalable=no">
+        <meta name="viewport" content="target-densitydpi=device-dpi">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <!-- END mobile meta tags -->
+        <!-- BEGIN other meta tags -->
+        <meta charset="utf-8">
+        <!-- END other meta tags -->
+        <!-- BEGIN CSS -->
+        <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+        <link href="css/main.css" rel="stylesheet" type="text/css">
+        <!-- END CSS -->
+        <title>
+            nursee Remote Healthcare
+        </title>
+    </head>
+    <body class="diagnosisHistory">
+        <header>
+            <h1 class="patientName">Mani Nilchiani</h1>
+            <h2 class="viewTitle">
+                Diagnosis History
+            </h2>
+            <h3>
+                Acute
+                <span class="count">2</span><!-- .count -->
+                Chronic
+                <span class="count">1</span><!-- .count -->
+            </h3>
+            <span class="add-35px">
+            </span><!-- .add-35px -->
+        </header>
+            
+        <div id="pageWrapper">
+            <div id="listViewWrapper">
+                <ul id="listView">
+                    <li class="swipeable">
+						<ul class="normalMenu">
+							<li class="primary">
+								Abdominal pain, epigastric
+							</li><!-- .primary -->
+							<li class="secondary status">
+								Chronic
+							</li><!-- .secondary status -->
+						</ul><!-- .normalMenu -->
+						<ul class="swipeMenu">
+							<li class="edit icon half">
+								Edit
+							</li><!-- .edit icon half -->
+							<li class="delete icon half">
+								Delete
+							</li><!-- .delete icon half -->
+						</ul><!-- .swipeMenu -->
+                    </li><!-- .swipeable -->
+                    <li class="swipeable">
+                        <ul class="normalMenu">
+							<li class="primary">
+								Salmonella gastroenteritis
+							</li><!-- .primary -->
+							<li class="secondary status">
+								Acute
+							</li><!-- .secondary status -->
+						</ul><!-- .normalMenu -->
+						<ul class="swipeMenu">
+							<li class="edit icon half">
+								Edit
+							</li><!-- .edit icon half -->
+							<li class="delete icon half">
+								Delete
+							</li><!-- .delete icon half -->
+						</ul><!-- .swipeMenu -->
+                    </li><!-- .swipeable -->
+                </ul><!-- #listView -->
+            </div><!-- #listViewWrapper -->
+            
+        </div><!-- #pageWrapper -->
+        
+        <footer>
+			<span class="back">
+			</span><!-- .back -->
+		</footer>
+            
+        <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="js/iscroll.js"></script>
+        <script type="text/javascript" src="cordova-2.5.0.js"></script>
+        <script type="text/javascript" src="js/jquery.transit.min.js"></script>
+        <script type="text/javascript" src="js/quo.js"></script>
+		<script type="text/javascript" src="js/modal.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+        <script type="text/javascript" src="js/views/diagnosis-history.js"></script>
+        <script type="text/javascript">
+			app.configurePageWrapper();
+            app.initialize();
+        </script>
+    </body><!-- body.diagnosisHistory -->
+</html>
