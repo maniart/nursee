@@ -39,9 +39,12 @@ var patientsDirectory = {
 jQuery.expr[':'].Contains = function(a,i,m){
     return (a.textContent || a.innerText || '').toUpperCase().indexOf(m[3].toUpperCase())>=0;
 };
+
+
 // live filter the patients
 (function filterPatients(){
-    var input = this.patientsDirectory.elements.search.field,
+    var	form = this.patientsDirectory.elements.search.form,
+		input = this.patientsDirectory.elements.search.field,
         list = this.patientsDirectory.elements.patientsList.self;
  
     input.change(function(){
@@ -55,9 +58,13 @@ jQuery.expr[':'].Contains = function(a,i,m){
         }
         return false;
         
-        }).keyup(function(){
-         $(this).change();
         });
+	
+	form.submit(function(){
+		input.change();
+		return false;
+	});
+	
 })();
 
 // bind gesture events

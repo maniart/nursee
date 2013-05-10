@@ -1,22 +1,8 @@
 /*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-/* Portrait layout (default) */
+	* nursee : Remote Healthcare
+	* MFADT Thesis project by Mani Nilchiani 2013
+	* http://nursee.net
+*/
 
 /* Landscape layout (with min-width) */
 @media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
@@ -25,7 +11,6 @@
 /* BEGIN HTML Doctor CSS reset */
 html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}nav ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}a{margin:0;padding:0;font-size:100%;vertical-align:baseline;background:transparent}ins{background-color:#ff9;color:#000;text-decoration:none}mark{background-color:#ff9;color:#000;font-style:italic;font-weight:bold}del{text-decoration:line-through}abbr[title],dfn[title]{border-bottom:1px dotted;cursor:help}table{border-collapse:collapse;border-spacing:0}hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0}input,select{vertical-align:middle}
 /* END HTML Doctor CSS reset */
-
 
 /* BEGIN Common Styles */
 * {
@@ -37,6 +22,15 @@ ul{
 }
 h1,h2,h3{
 	font-weight: 300;
+}
+h1.nothingFound{
+	font-weight: 400;
+	padding: 10px;
+	font-size: 2em;
+	color: rgba(70,70,70,.8);
+	float: left;
+	width: 100%;
+	text-align: center;
 }
 body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
@@ -175,7 +169,7 @@ body>header>h1{
     display: inline-block;
     height: 30px;
     width: 30px;
-    margin:8px;
+    margin:7px;
     padding: 
     -webkit-border-radius: 50px;
     border-radius: 50px;
@@ -283,15 +277,6 @@ li.icon{
 	-webkit-transition: all 100ms cubic-bezier(0.680, -0.550, 0.265, 1.550);  
 
 }
-ul.swipeMenu>li.half{
-	width: 50%;
-}
-ul.swipeMenu>li.tierce{
-	width: 33.3%;
-}
-ul.swipeMenu>li.quarter{
-	width: 25%;
-}
 ul.swipeMenu>li{
 	border-right: 1px solid rgba(0,0,0,.3);
 	border-left: 1px solid rgba(0,0,0,.7);
@@ -307,6 +292,106 @@ li.delete{
 }
 li.edit{
 	background-image: url('../img/edit-30px.png');
+}
+.slideIn{
+	margin-left: 330px;	
+}
+.modal{
+	position: absolute;
+	z-index: 999;
+	padding: 100px 10px 10px 10px;
+	background-repeat : no-repeat;
+	background-position: 10px 10px;
+}
+.modalContent{
+	width: 100%;
+	float: left;
+	margin-top: 100px;
+}
+.modal h1{
+	font-size: 2em;
+	font-weight: 100;
+	text-align: center;
+	float: left;
+	width: 100%;
+	margin-bottom: 50px;
+}
+.confirmation{
+	float: left;
+	width: 80%;
+	margin: 30px 10%;
+	height: 50px;
+	list-style-type: none;
+	padding: 0;
+	transform: scale(.001);
+	-webkit-transform: scale(.001);
+}
+.confirmation li{
+	width: 50%;
+	height: 50px;
+	float: left;
+	background-color: transparent;
+	background-repeat: no-repeat;
+	background-position: center center;
+	border-radius: 50px;
+	-webkit-border-radius: 50px;
+}
+.confirmation li{
+}
+.confirmation li:active{
+	background-color: rgba(255,255,255,.2);
+}
+.confirmation li:last-child{
+}
+.confirm{
+	background-image: url('../img/confirm-50.png');
+}
+
+.cancel{
+	background-image: url('../img/cancel-50.png');
+}
+.buttons{
+	text-align: center;
+	height: 40px;
+	list-style-type: none;
+	font-size: 1.5em;
+	width: 250px;
+	font-weight:400;
+	margin-top: 30px;
+	margin-bottom: 20px;
+	margin-left: 20px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px solid rgba(255,255,255,1);
+	float: left;
+
+}
+.buttons li{
+	background: rgba(255,255,255,.2);
+	height: 100%;
+	 -webkit-box-sizing: border-box; box-sizing: border-box;
+	display: block;
+	float: left;
+	line-height:2.7;
+	text-align: center;
+	border-right: 1px solid rgba(255,255,255,1);
+}
+.buttons li:first-child{
+}
+.buttons li:last-child{
+	border: none;
+}
+.buttons li:active{
+	background: rgba(255,255,255,.5);
+}
+.half{
+	width: 50%;
+}
+.tierce{
+	width: 33.3%;
+}
+.quarter{
+	width: 25%;
 }
 /* END Common Styles */
 
@@ -566,6 +651,9 @@ article#lifeStyle:active{
 body.diagnosisHistory{
     
 }
+body.diagnosisHistory .modal{
+	background-color: rgb(76,193,151);
+}
 body.diagnosisHistory>header{
     width: 100%;
 	float: left;
@@ -581,209 +669,274 @@ body.diagnosisHistory #pageWrapper{
 body.diagnosisHistory div#listViewWrapper ul#listView>li.swipeable>ul.normalMenu:active{
     background: rgba(50,50,50,1);
 }
-.perspective{
-	-webkit-transform: perspective( 700px ) rotateX( 90deg );
-	height: 0px;
+.editableEntry{
+	border: none;
+	background: rgba(255,255,255,.3);
+	float: left;
+	height: 2em;
+	font-size: 1em;
+	color: rgba(84,192,147,1);
+	color: #666;
+	border-radius: 0px;
+	-webkit-border-radius: 0px;
 }
-/*
-body.diagnosisHistory div#listViewWrapper ul#listView li.swipeable>ul.swipeMenu{
-	background: rgba(76,193,151,1);
-}
-*/
 /* END Diagnosis History */
-/*
-* Mootools Simple Modal
-* Version 1.0
-* Copyright (c) 2011 Marco Dell'Anna - http://www.plasm.it
-*
-* Markup Modal
-* <div class="simple-modal" id="simple-modal">
-*   <div class="simple-modal-header">
-*     <a class="close" href="#">Ã—</a>
-*     <h1>SimpleModal Title</h1>
-*   </div>
-*   <div class="simple-modal-body">
-*     <div class="contents">
-*       <p>
-*         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-*       </p>
-*     </div>
-*   </div>
-*   <div class="simple-modal-footer">
-*     <a class="btn primary" href="#">Primary</a>
-*     <a class="btn secondary" href="#">Secondary</a>
-*   </div>
-* </div>
-*/
-/* Vars */
-/* Overlay style */
-#simple-modal-overlay {
-  position: fixed ;
-  display: block;
-  z-index: 99998;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #000000;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background: -webkit-gradient(radial, center center, 0, center center, 460, from(#ffffff), to(#291a49));
-  background: -webkit-radial-gradient(circle, #ffffff, #291a49);
-  background: -moz-radial-gradient(circle, #ffffff, #291a49);
-  background: -ms-radial-gradient(circle, #ffffff, #291a49);
+/* BEGIN Personal Medical History */
+body.pmh{
+    
 }
-.simple-modal {
-  /* Style rewrite */
+body.pmh .modal{
+	background-color: rgb(242,175,76);
+}
+body.pmh>header{
+    width: 100%;
+	float: left;
+	padding: 4px;
+    background: url('../img/pmh-module-bg.png') 5px 20px no-repeat rgb(242,175,76);
+    height: 100px;
+    font-size: 2.4em;
+    font-weight: 300;
+}
 
-  width: 600px;
-  left: 20px;
-  top: 20px;
-  /* */
+body.pmh #pageWrapper{
+}
+body.pmh div#listViewWrapper ul#listView>li.swipeable>ul.normalMenu:active{
+    background: rgba(50,50,50,1);
+}
+.editableEntry{
+	border: none;
+	background: rgba(255,255,255,.3);
+	float: left;
+	height: 2em;
+	font-size: 1em;
+	color: rgba(84,192,147,1);
+	color: #666;
+	border-radius: 0px;
+	-webkit-border-radius: 0px;
+}
+/* END Personal Medical History */
+/* BEGIN Medication List */
+body.med{
+    
+}
+body.med .modal{
+	background-color: rgb(244,108,122);
+}
+body.med>header{
+    width: 100%;
+	float: left;
+	padding: 4px;
+    background: url('../img/medication-list-module-bg.png') 5px 20px no-repeat rgb(244,108,122);
+    height: 100px;
+    font-size: 2.4em;
+    font-weight: 300;
+}
 
-  position: absolute;
-  position: fixed;
-  margin: 0;
-  color: #808080;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13px;
-  font-weight: normal;
-  line-height: 18px;
-  background-color: #FFFFFF;
-  border: 1px solid #EAEEFA;
-  border: 1px solid rgba(234, 238, 250, 0.6);
-  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
-  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
-  z-index: 99999;
-  border-radius: 6px;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
+body.med #pageWrapper{
 }
-.simple-modal .simple-modal-header {
-  padding: 5px 15px;
-  margin: 0;
-  border-bottom: 1px solid #EEEEEE;
+body.med div#listViewWrapper ul#listView>li.swipeable>ul.normalMenu:active{
+    background: rgb(244,108,122);
 }
-.simple-modal .simple-modal-header h1 {
-  margin: 0;
-  color: #404040;
-  font-size: 18px;
-  font-weight: bold;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  line-height: 36px;
+.editableEntry{
+	border: none;
+	background: rgba(255,255,255,.3);
+	float: left;
+	height: 2em;
+	font-size: 1em;
+	color: rgba(84,192,147,1);
+	color: #666;
+	border-radius: 0px;
+	-webkit-border-radius: 0px;
 }
-.simple-modal a.close {
-  position: absolute;
-  right: 15px;
-  top: 15px;
-  color: #999;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 17px;
-  font-weight: normal;
-  line-height: 10px;
-  text-decoration: none;
+/* END Medication List */
+/* BEGIN Allergies */
+body.allergies{
+    
 }
-.simple-modal a.close:hover {
-  color: #444;
+body.allergies .modal{
+	background-color: rgb(165,60,165);
 }
-.simple-modal .simple-modal-body {
-  padding: 15px;
-  /* Extra style */
+body.allergies>header{
+    width: 100%;
+	float: left;
+	padding: 4px;
+    background: url('../img/allergies-module-bg.png') 5px 20px no-repeat rgb(165,60,165);
+    height: 100px;
+    font-size: 2.4em;
+    font-weight: 300;
+}
 
+body.allergies #pageWrapper{
 }
-.simple-modal .simple-modal-body div.contents {
-  overflow: hidden;
+body.allergies div#listViewWrapper ul#listView>li.swipeable>ul.normalMenu:active{
+    background: rgb(165,60,165);
 }
-.simple-modal .simple-modal-body p {
-  font-size: 13px;
-  font-weight: normal;
-  color: #606060;
-  line-height: 18px;
+.editableEntry{
+	border: none;
+	background: rgba(255,255,255,.3);
+	float: left;
+	height: 2em;
+	font-size: 1em;
+	color: rgba(84,192,147,1);
+	color: #666;
+	border-radius: 0px;
+	-webkit-border-radius: 0px;
 }
-.simple-modal .simple-modal-body p img {
-  display: block;
-  margin: 0 auto 10px auto;
+.severity {
+	line-height: 1;
+    padding: 2px 3px;
+    margin: 15px 5px 5px 5px;
+    display: inline;
+    color: rgba(255,255,255,1);
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+	width: 10px;
+	height: 10px;
 }
-.simple-modal .simple-modal-footer {
-  display: block;
-  background-color: #F5F5F5;
-  padding: 14px 15px 15px;
-  border-top: 1px solid #EEEEEE;
-  -webkit-border-radius: 0 0 6px 6px;
-  -moz-border-radius: 0 0 6px 6px;
-  border-radius: 0 0 6px 6px;
-  -webkit-box-shadow: inset 0 1px 0 #FFF;
-  -moz-box-shadow: inset 0 1px 0 #FFF;
-  box-shadow: inset 0 1px 0 #FFF;
-  zoom: 1;
-  margin-bottom: 0;
-  text-align: center;
+.one{
+	background-color: #bfe00a;
 }
-.simple-modal .simple-modal-footer a.btn {
-  text-decoration: none;
-  cursor: pointer;
-  display: inline-block;
-  background-repeat: no-repeat;
-  padding: 5px 14px 6px;
-  color: #333;
-  font-size: 13px;
-  line-height: normal;
-  border: 1px solid transparent;
-  -webkit-transition: 0.2s linear all;
-  -moz-transition: 0.2s linear all;
-  transition: 0.2s linear all;
-  border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
+.two{
+	background-color: #e48d10;
 }
-.simple-modal .simple-modal-footer a.btn.primary {
-  color: #FFF;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
-  background-color: #999;
-  background-repeat: repeat-x;
-  margin-right: 15px;
+.three{
+	background-color: #e4103d;
 }
-.simple-modal .simple-modal-footer a.btn.primary:hover {
-  border: 1px solid #444;
-  background-color: #444;
+/* END Allergies */
+/* BEGIN Immunization */
+body.immunization{
+    
 }
-.simple-modal .simple-modal-footer a.btn.secondary {
-  padding: 5px 2px 6px;
+body.immunization .modal{
+	background-color: rgb(153,193,114);
 }
-.simple-modal .simple-modal-footer a.btn.secondary:hover {
-  color: #999;
+body.immunization>header{
+    width: 100%;
+	float: left;
+	padding: 4px;
+    background: url('../img/immunization-module-bg.png') 5px 20px no-repeat rgb(153,193,114);
+    height: 100px;
+    font-size: 2.4em;
+    font-weight: 300;
 }
-/* Draggable style */
-.simple-modal.draggable .simple-modal-header:hover {
-  cursor: move;
-  background-color: #f8f8f8;
-  -webkit-border-top-left-radius: 6px;
-  -webkit-border-top-right-radius: 6px;
-  -moz-border-radius-topleft: 6px;
-  -moz-border-radius-topright: 6px;
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
-}
-/* Loading style */
-.simple-modal.loading .simple-modal-body {
-  min-height: 60px;
-  background: transparent url("../images/loader.gif") no-repeat center center;
-}
-.simple-modal.loading .simple-modal-body div.contents {
-  display: none;
-}
-.simple-modal.loading .close, .simple-modal.loading .simple-modal-header, .simple-modal.loading .simple-modal-footer {
-  display: none;
-}
-/* Hide header */
-.simple-modal.hide-header .simple-modal-header {
-  display: none;
-}
-/* Hide header */
-.simple-modal.hide-footer .simple-modal-footer {
-  display: none;
-}
-/* BEGIN Modal Styles */
 
-/* End Modal Styles */
+body.immunization #pageWrapper{
+}
+body.immunization div#listViewWrapper ul#listView>li.swipeable>ul.normalMenu:active{
+    background: rgb(153,193,114);
+}
+.editableEntry{
+	border: none;
+	background: rgba(255,255,255,.3);
+	float: left;
+	height: 2em;
+	font-size: 1em;
+	color: rgb(153,193,114);
+	color: #666;
+	border-radius: 0px;
+	-webkit-border-radius: 0px;
+}
+/* END Immunization */
+/* BEGIN Lab Records */
+body.lab{
+    
+}
+body.lab .modal{
+	background-color: rgb(104,160,121);
+}
+body.lab>header{
+    width: 100%;
+	float: left;
+	padding: 4px;
+    background: url('../img/lab-records-module-bg.png') 5px 20px no-repeat rgb(104,160,121);
+    height: 100px;
+    font-size: 2.4em;
+    font-weight: 300;
+}
+
+body.lab #pageWrapper{
+}
+body.lab div#listViewWrapper ul#listView>li.swipeable>ul.normalMenu:active{
+    background: rgb(104,160,121);
+}
+.editableEntry{
+	border: none;
+	background: rgb(104,160,121);
+	float: left;
+	height: 2em;
+	font-size: 1em;
+	color: rgb(153,193,114);
+	color: #666;
+	border-radius: 0px;
+	-webkit-border-radius: 0px;
+}
+/* END Lab Records */
+/* BEGIN Image Records */
+body.image{
+    
+}
+body.image .modal{
+	background-color: rgb(105,183,181);
+}
+body.image>header{
+    width: 100%;
+	float: left;
+	padding: 4px;
+    background: url('../img/image-records-module-bg.png') 5px 20px no-repeat rgb(105,183,181);
+    height: 100px;
+    font-size: 2.4em;
+    font-weight: 300;
+}
+
+body.image #pageWrapper{
+}
+body.image div#listViewWrapper ul#listView>li.swipeable>ul.normalMenu:active{
+    background: rgb(105,183,181);
+}
+.editableEntry{
+	border: none;
+	background: rgb(105,183,181);
+	float: left;
+	height: 2em;
+	font-size: 1em;
+	color: rgb(153,193,114);
+	color: #666;
+	border-radius: 0px;
+	-webkit-border-radius: 0px;
+}
+/* END Image Records */
+/* BEGIN Image Records */
+body.lifeStyle{
+    
+}
+body.lifeStyle .modal{
+	background-color: rgb(222,115,83);
+}
+body.lifeStyle>header{
+    width: 100%;
+	float: left;
+	padding: 4px;
+    background: url('../img/lifestyle-module-bg.png') 5px 20px no-repeat rgb(222,115,83);
+    height: 100px;
+    font-size: 2.4em;
+    font-weight: 300;
+}
+
+body.lifeStyle #pageWrapper{
+}
+body.lifeStyle div#listViewWrapper ul#listView>li.swipeable>ul.normalMenu:active{
+    background: rgb(222,115,83);
+}
+.editableEntry{
+	border: none;
+	background: rgb(222,115,83);
+	float: left;
+	height: 2em;
+	font-size: 1em;
+	color: rgb(153,193,114);
+	color: #666;
+	border-radius: 0px;
+	-webkit-border-radius: 0px;
+}
+/* END Image Records */
+

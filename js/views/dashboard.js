@@ -34,18 +34,31 @@ function updateLayout() {
     myScroll.refresh();
     myScroll.scrollToPage(currentPage, 0, 0);
 }
-
+// Navigation
 $$('body.dashboard footer span.back').tap(function(){
-    $('body').transition({
-        opacity: 0
-       },200,'easeOutQuad', function(){
-       window.location = 'index.html';
-    });
+    window.app.navigateTo('index');
 });
 $$('body.dashboard article#diagnosisHist').tap(function(){
-    $('body').transition({
-        opacity: 0
-    },200,'easeOutQuad', function(){
-    window.location = 'diagnosis-history.html';
-   });
+    window.app.navigateTo('diagnosis-history');
+});
+$$('body.dashboard article#pmh').tap(function(){
+    window.app.navigateTo('pmh');
+});
+$$('body.dashboard article#mdList').tap(function(){
+    window.app.navigateTo('med');
+});
+$$('body.dashboard article#allergies').tap(function(){
+    window.app.navigateTo('allergies');
+});
+$$('body.dashboard article#immunization').tap(function(){
+    window.app.navigateTo('immunization');
+});
+$$('body.dashboard article#labRecords').tap(function(){
+    window.app.navigateTo('lab');
+});
+$$('body.dashboard article#imgRecords').tap(function(){
+    window.app.navigateTo('image');
+});
+$$('body.dashboard article#lifeStyle').tap(function(){
+    window.app.navigateTo('lifestyle');
 });

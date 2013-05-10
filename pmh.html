@@ -20,23 +20,22 @@
             nursee Remote Healthcare
         </title>
     </head>
-    <body class="diagnosisHistory">
+    <body class="pmh">
         <header>
             <h1 class="patientName">Matthew Willse</h1>
             <h2 class="viewTitle">
-                Diagnosis History
+                Personal Medical History
             </h2>
             <h3>
-                Acute
-                <span class="count">2</span><!-- .count -->
-                Chronic
+                Hospitalization
                 <span class="count">1</span><!-- .count -->
+                
             </h3>
             <span class="add-35px">
             </span><!-- .add-35px -->
         </header>
        
-		 <div class="modal">
+		<div class="modal">
 		</div><!-- .modal -->
        
 		 <div id="pageWrapper">
@@ -46,11 +45,11 @@
 						<ul class="normalMenu">
 							<li class="primary">
 								<span>
-									Abdominal pain, epigastric
+									Hospitalization
 								</span>
 							</li><!-- .primary -->
 							<li class="secondary status">
-								Chronic
+								Heart Failure
 							</li><!-- .secondary status -->
 						</ul><!-- .normalMenu -->
 						<ul class="swipeMenu">
@@ -62,46 +61,7 @@
 							</li><!-- .delete icon half -->
 						</ul><!-- .swipeMenu -->
                     </li><!-- .swipeable -->
-                    <li class="swipeable">
-                        <ul class="normalMenu">
-							<li class="primary">
-								<span>
-									Salmonella gastroenteritis
-								</span>
-							</li><!-- .primary -->
-							<li class="secondary status">
-								Acute
-							</li><!-- .secondary status -->
-						</ul><!-- .normalMenu -->
-						<ul class="swipeMenu">
-							<li class="edit icon half">
-								Edit
-							</li><!-- .edit icon half -->
-							<li class="delete icon half">
-								Delete
-							</li><!-- .delete icon half -->
-						</ul><!-- .swipeMenu -->
-                    </li><!-- .swipeable -->
-					<li class="swipeable">
-                        <ul class="normalMenu">
-							<li class="primary">
-								<span>
-									Insomnia
-								</span>
-							</li><!-- .primary -->
-							<li class="secondary status">
-								Chronic
-							</li><!-- .secondary status -->
-						</ul><!-- .normalMenu -->
-						<ul class="swipeMenu">
-							<li class="edit icon half">
-								Edit
-							</li><!-- .edit icon half -->
-							<li class="delete icon half">
-								Delete
-							</li><!-- .delete icon half -->
-						</ul><!-- .swipeMenu -->
-                    </li><!-- .swipeable -->
+                    
 				</ul><!-- #listView -->
             </div><!-- #listViewWrapper -->
             
@@ -118,7 +78,7 @@
         <script type="text/javascript" src="js/jquery.transit.min.js"></script>
         <script type="text/javascript" src="js/quo.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
-        <script type="text/javascript" src="js/views/diagnosis-history.js"></script>
+        <script type="text/javascript" src="js/views/pmh.js"></script>
         <script type="text/javascript">
 			app.configurePageWrapper();
 			app.configureDimensions();

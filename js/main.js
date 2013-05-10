@@ -1,21 +1,8 @@
 /*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
+ * nursee: mobile healthcare
+ * Mani Nilchiani
+ * MFA DT Thesis project 
+*/
 var app = {
     // Application Constructor
     initialize: function() {
@@ -43,6 +30,7 @@ var app = {
         pageScroller: $('#pageScroller'),
         module: $('.module'),
         squareModule: $('.square'),
+		modal : $('.modal'),
         modules: {
             appts: {
                 self: $('article#appts'),
@@ -58,7 +46,11 @@ var app = {
             labRecords: $('article#labRecords'),
             imgRecords: $('article#imgRecords'),
             lifeStyle: $('article#lifeStyle')
-        }
+        },
+		buttons : {
+			self : $('.buttons'),
+			item : $('.buttons>li')
+		}
         
     },
     // Caching frequently referenced DOM sizes
@@ -91,23 +83,74 @@ var app = {
             height: $('div.page').height()
         }
     },
+	templates:{
+		confirmation: '<ul class="confirmation"><li class="cancel"></li><li class="confirm"></li></ul>',
+		confirmRemove : function(itemToRemove){
+			return '<h1>Remove<br> ' + itemToRemove + ' ?</h1>'
+		},
+		confirmEdit : function(itemToEdit){
+			return '<h1><strong>Editing:<strong><br>' + itemToEdit + '</h1>'
+		}
+	},
+	// methods
+	swipe : function(el){
+		var element = $(el);
+		element.addClass('swiped');
+		//alert('On swipe:' + element.attr('class'));
+		element.transition({
+			marginLeft : '-330px'
+		},100,'ease',function(){
+			element.parent('li').find('.swipeMenu').transition({
+				marginLeft : 0
+			}, 100, 'snap', function(){
+				$(this).find('li').css({
+					backgroundSize : '25px'
+				},100);
+			});
+		});
+		
+	},
+	unswipe : function(el){
+		var element = $(el);
+		//alert('On unswipe' + element.attr('class'));
+		element.transition({
+			marginLeft : '330px'
+		},100,'ease',function(){
+			element.parent('li').find('.normalMenu').transition({
+				marginLeft : 0
+			}, 100, 'snap', function(){
+				$(this).find('li').css({
+					backgroundSize : '0px'
+				},100,function(){
+					element.removeClass('swiped');
+				});
+			});
+		});
+	},
     configureDimensions: function(){
-        this.elements.page.css({
+		
+		
+		this.elements.page.css({
            height: ($(window).height()) - ((this.dimensions.dashboardHeader.height)+(63)),
            width: $(window).width()
         });
+		this.elements.modal.css({
+			height: $(window).height(),
+			width: $(window).width(),
+			left: -this.dimensions.screen.width
+		});
         this.elements.squareModule.css({
             height: (this.floatToInt(this.elements.page.height()/3)-(this.dimensions.marginStandard))
         });
         this.elements.modules.appts.self.css({
-            height: (this.elements.page.height())
+            height: (this.elements.page.height()-(4))
         });
         this.elements.modules.lifeStyle.css({
             width: this.elements.page.width()
         });
         this.elements.modules.appts.apptsScroller.css({
             top: ($('.page').height()),/*this.dimensions.page.height, *//*(this.elements.page.height())- (this.floatToInt(this.elements.page.height()/3))*/
-            height: $('.page').height()
+            height: ($('.page').height())-(4)
         });
         this.elements.modules.appts.apptsActionsWrapper.css({
             left: -(this.elements.page.width()/2)
@@ -116,9 +159,11 @@ var app = {
     },
     configurePageWrapper: function(){
         var viewPortHeight = this.dimensions.screen.height - this.dimensions.header.height - 63 - (this.dimensions.marginStandard*2);
+		
         this.elements.pageWrapper.css({
             height: viewPortHeight
         });
+		
     },
     navigateTo: function(path){
         $('body').transition({
@@ -144,6 +189,7 @@ var app = {
             },200,'easeInOutCubic');
 
         });
+		
         
     },
     fadeInBody: function(){
@@ -157,7 +203,8 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('touchmove', function(e) { e.preventDefault(); }, false);
-        this.configureDimensions();
+        
+		this.configureDimensions();
         this.createTouchEvents();
         this.fadeInBody();
         

@@ -21,7 +21,14 @@
             hideFooter:    false,
             btn_ok:        "OK", // Label
             btn_cancel:    "Cancel", // Label
-            template:"<div class=\"simple-modal-header\"> \
+            template:"\
+                <div class=\"simple-modal-body\"> \
+                <div class=\"contents\">{_CONTENTS_}</div> \
+            </div> \
+                <div class=\"simple-modal-footer\"></div>"
+        },
+			/*
+			template:"<div class=\"simple-modal-header\"> \
                 <h1>{_TITLE_}</h1> \
             </div> \
                 <div class=\"simple-modal-body\"> \
@@ -29,6 +36,7 @@
             </div> \
                 <div class=\"simple-modal-footer\"></div>"
         },
+			*/
 
         SimpleModal: function(options) {
             self = this;
@@ -62,7 +70,7 @@
                 break;
             case "confirm":
                 // Add button confirm
-                this.addButton(this.options.btn_ok, "btn primary btn-margin", function() {
+                this.addButton(this.options.btn_ok, "btn primary", function() {
                     // in oppose to original version, i'm not catching exceptions
                     // i want to know what's eventually goes wrong
                     self.options.callback();

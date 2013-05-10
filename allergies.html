@@ -20,23 +20,25 @@
             nursee Remote Healthcare
         </title>
     </head>
-    <body class="diagnosisHistory">
+    <body class="allergies">
         <header>
             <h1 class="patientName">Matthew Willse</h1>
             <h2 class="viewTitle">
-                Diagnosis History
+                Allergies
             </h2>
             <h3>
-                Acute
-                <span class="count">2</span><!-- .count -->
-                Chronic
+                Environmental
+                <span class="count">1</span><!-- .count -->
+                Food
+                <span class="count">1</span><!-- .count -->
+				Drug
                 <span class="count">1</span><!-- .count -->
             </h3>
             <span class="add-35px">
             </span><!-- .add-35px -->
         </header>
        
-		 <div class="modal">
+		<div class="modal">
 		</div><!-- .modal -->
        
 		 <div id="pageWrapper">
@@ -46,11 +48,14 @@
 						<ul class="normalMenu">
 							<li class="primary">
 								<span>
-									Abdominal pain, epigastric
+									Mold
 								</span>
 							</li><!-- .primary -->
+							<li class="secondary severity one">
+								&nbsp;
+							</li><!-- .secondary severity one -->
 							<li class="secondary status">
-								Chronic
+								Environmental
 							</li><!-- .secondary status -->
 						</ul><!-- .normalMenu -->
 						<ul class="swipeMenu">
@@ -66,11 +71,14 @@
                         <ul class="normalMenu">
 							<li class="primary">
 								<span>
-									Salmonella gastroenteritis
+									Gluten intolerance
 								</span>
 							</li><!-- .primary -->
+							<li class="secondary severity three">
+								&nbsp;
+							</li><!-- .secondary severity three -->
 							<li class="secondary status">
-								Acute
+								Food
 							</li><!-- .secondary status -->
 						</ul><!-- .normalMenu -->
 						<ul class="swipeMenu">
@@ -86,11 +94,14 @@
                         <ul class="normalMenu">
 							<li class="primary">
 								<span>
-									Insomnia
+									Penicillin
 								</span>
 							</li><!-- .primary -->
+							<li class="secondary severity two">
+								&nbsp;
+							</li><!-- .secondary severity two -->
 							<li class="secondary status">
-								Chronic
+								Drug
 							</li><!-- .secondary status -->
 						</ul><!-- .normalMenu -->
 						<ul class="swipeMenu">
@@ -118,7 +129,7 @@
         <script type="text/javascript" src="js/jquery.transit.min.js"></script>
         <script type="text/javascript" src="js/quo.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
-        <script type="text/javascript" src="js/views/diagnosis-history.js"></script>
+        <script type="text/javascript" src="js/views/allergies.js"></script>
         <script type="text/javascript">
 			app.configurePageWrapper();
 			app.configureDimensions();
